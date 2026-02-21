@@ -94,9 +94,7 @@ iframe{height:250px}
 <img src="loaderhahainu.png">
 </div>
 
-<audio id="music" loop>
-<source src="sound.mp3" type="audio/mpeg">
-</audio>
+<audio id="music"></audio>
 
 <nav>
 <img src="hahainudark.png">
@@ -112,9 +110,11 @@ iframe{height:250px}
 <header>
 <img src="hahainudark.png">
 <h1>HAHAINU</h1>
- <h2>💲HAH<h2>
+<h2>💲HAH</h2>
 <p>Laugh First, Moon Later 🚀</p>
-<button class="main" onclick="toggleMusic()">🎵 Play Music</button>
+<button class="main" onclick="toggleMusic()">🎵 Play / Pause</button>
+<button class="main" onclick="prevSong()">⏮ Prev</button>
+<button class="main" onclick="nextSong()">⏭ Next</button>
 <button class="main" onclick="buy()">Buy Token</button>
 </header>
 
@@ -179,15 +179,54 @@ creat © 2026 — Hahainu Coin Project
 <script>
 window.onload=()=>{document.getElementById("loader").style.display="none"}
 
-function toggleMusic(){
-let m=document.getElementById("music");
-m.paused ? m.play() : m.pause();
+// ====== MUSIC PLAYER MULTI-LAGU ======
+const playlist = [
+  "sound1.mp3",
+  "sound2.mp3",
+  "sound3.mp3"
+];
+let currentTrack = Math.floor(Math.random() * playlist.length);
+const music = document.getElementById("music");
+
+function loadTrack(index){
+  music.src = playlist[index];
+  music.play();
 }
 
+window.addEventListener("load", () => {
+  loadTrack(currentTrack); // auto play saat load
+});
+
+music.onended = () => {
+  nextSong(); // auto lanjut
+};
+
+function toggleMusic(){
+  if(music.paused){
+    music.play();
+  } else {
+    music.pause();
+  }
+}
+
+function nextSong(){
+  currentTrack = Math.floor(Math.random() * playlist.length); // random shuffle
+  loadTrack(currentTrack);
+}
+
+function prevSong(){
+  currentTrack--;
+  if(currentTrack < 0) currentTrack = playlist.length - 1;
+  loadTrack(currentTrack);
+}
+// ====== END MUSIC PLAYER ======
+
+// ====== BUY TOKEN ======
 function buy(){
 window.open("https://raydium.io/swap/?inputCurrency=sol&outputCurrency=PASTE_CONTRACT_SOLANA");
- }
+}
 
+// ====== COPY CONTRACT ======
 function copyCA(){
 let ca=document.getElementById("ca");
 ca.select();
@@ -195,6 +234,7 @@ document.execCommand("copy");
 alert("Contract copied!");
 }
 
+// ====== CONNECT WALLET (PHANTOM SOLANA) ======
 async function connectWallet(){
   if (window.solana && window.solana.isPhantom) {
     const resp = await window.solana.connect();
@@ -205,6 +245,7 @@ async function connectWallet(){
   }
 }
 
+// ====== SCROLL ANIMATION ======
 const cards=document.querySelectorAll(".card");
 window.addEventListener("scroll",()=>{
 cards.forEach(c=>{
