@@ -167,8 +167,8 @@ iframe{height:250px}
 <section id="community">
 <div class="card">
 <h2>Community</h2>
-<button class="main">Telegram</button>
-<button class="main">Twitter</button>
+<button class="main" onclick="window.open('https://t.me/hahainu')">Telegram</button>
+<button class="main" onclick="window.open('https://twitter.com/hahainu')">Twitter</button>
 </div>
 </section>
 
@@ -185,8 +185,8 @@ m.paused ? m.play() : m.pause();
 }
 
 function buy(){
-window.open("https://dexscreener.com");
-}
+window.open("https://raydium.io/swap/?inputCurrency=sol&outputCurrency=PASTE_CONTRACT_SOLANA");
+ }
 
 function copyCA(){
 let ca=document.getElementById("ca");
@@ -196,12 +196,13 @@ alert("Contract copied!");
 }
 
 async function connectWallet(){
-if(window.ethereum){
-const acc=await ethereum.request({method:"eth_requestAccounts"});
-alert("Connected: "+acc[0]);
-}else{
-alert("Please install Metamask");
-}
+  if (window.solana && window.solana.isPhantom) {
+    const resp = await window.solana.connect();
+    alert("Connected: " + resp.publicKey.toString());
+  } else {
+    alert("Please install Phantom Wallet");
+    window.open("https://phantom.app/");
+  }
 }
 
 const cards=document.querySelectorAll(".card");
