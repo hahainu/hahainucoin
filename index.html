@@ -4,102 +4,74 @@
 <meta charset="UTF-8">
 <title>HAHAINU | Meme Crypto</title>
 <meta name="description" content="HAHAINU meme coin website. Laugh first, moon later.">
-<meta name="keywords" content="hahainu, meme coin, crypto, blockchain">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="logohahainu.png">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{
-font-family:Poppins,sans-serif;
-background:#0b0d14;
-color:#fff;
-overflow-x:hidden;
-}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Poppins,sans-serif;background:#0b0d14;color:#fff;overflow-x:hidden}
+
+/* LOADER */
 #loader{
-position:fixed;inset:0;
-background:#0b0d14;
-display:flex;justify-content:center;align-items:center;
-z-index:9999;
-}
+position:fixed;inset:0;background:#0b0d14;
+display:flex;align-items:center;justify-content:center;z-index:9999}
 #loader img{width:120px;animation:spin 2s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 
+/* NAV */
 nav{
-position:fixed;top:0;width:100%;
-background:#11131d;
-display:flex;justify-content:space-between;align-items:center;
-padding:15px 30px;z-index:1000;
-}
+position:fixed;top:0;width:100%;z-index:1000;
+background:#11131d;display:flex;justify-content:space-between;
+align-items:center;padding:12px 25px}
 nav img{width:40px}
-nav a{color:#fff;text-decoration:none;margin:0 15px;font-weight:600}
+nav a{color:white;text-decoration:none;margin:0 10px}
 
-/* Tombol gradient terang + ikon gambar */
-button.main {
-    background: linear-gradient(45deg, #00ffcc, #00ccff);
-    border: none;
-    border-radius: 40px;
-    padding: 6px 8px;
-    margin: 0 5px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-button.main img {
-    display: block;
-    width: 24px;
-    height: 24px;
-}
-button.main:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 15px #00ffcc;
-}
+button.main{
+background:linear-gradient(45deg,#00ffcc,#00ccff);
+border:none;border-radius:30px;padding:6px 8px;
+cursor:pointer;margin:0 3px;transition:.3s}
+button.main img{width:22px}
+button.main:hover{transform:scale(1.1);box-shadow:0 0 10px #00ffcc}
 
+/* HEADER */
 header{
-min-height:100vh;
-display:flex;flex-direction:column;
-justify-content:center;align-items:center;
-text-align:center;padding-top:100px;
-}
-header img{width:150px;animation:float 3s ease-in-out infinite}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
+min-height:100vh;display:flex;flex-direction:column;
+justify-content:center;align-items:center;text-align:center;padding-top:90px}
+header img{width:150px;animation:float 3s infinite}
+@keyframes float{50%{transform:translateY(-15px)}}
 h1{font-size:60px}
-p{opacity:.8}
 
+/* SECTION */
 section{max-width:1000px;margin:auto;padding:60px 20px}
 .card{
-background:#151826;
-border-radius:25px;
-padding:30px;
-margin-bottom:40px;
-box-shadow:0 10px 30px rgba(0,0,0,.7);
-opacity:0;transform:translateY(40px);transition:1s;
-}
+background:#151826;padding:30px;border-radius:25px;
+margin-bottom:40px;box-shadow:0 10px 30px rgba(0,0,0,.7);
+opacity:0;transform:translateY(40px);transition:1s}
 .card.show{opacity:1;transform:none}
 
-input{
-width:100%;padding:12px;
-border-radius:10px;border:none;margin-top:10px;
-}
-
-iframe{width:100%;height:400px;border:none;border-radius:20px}
+iframe{width:100%;height:500px;border:none;border-radius:20px}
 
 footer{text-align:center;padding:30px;opacity:.5}
 
+/* ROADMAP */
+.roadmap{
+display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px}
+.road{
+background:#1b1f30;border-radius:20px;padding:20px;text-align:center;
+box-shadow:0 0 15px rgba(0,255,200,.2)}
+
 @media(max-width:600px){
 h1{font-size:40px}
-nav{flex-direction:column}
-iframe{height:250px}
+iframe{height:300px}
 }
 </style>
 </head>
 
 <body>
 
-<div id="loader">
-<img src="loaderhahainu.png">
-</div>
-
+<div id="loader"><img src="loaderhahainu.png"></div>
 <audio id="music"></audio>
 
 <nav>
@@ -109,17 +81,11 @@ iframe{height:250px}
 <a href="#token">Token</a>
 <a href="#buy">Buy</a>
 <a href="#community">Community</a>
-
-<!-- Tombol gambar -->
-<button class="main" onclick="connectWallet()">
-  <img src="wallet-icon.png" alt="Wallet">
-</button>
-<button class="main" onclick="location.href='https://t.me/hahainucoin'">
-  <img src="telegram-icon.png" alt="Telegram">
-</button>
-<button class="main" onclick="window.open('https://twitter.com/hahainu')">
-  <img src="twitter-icon.png" alt="Twitter">
-</button>
+<button class="main" onclick="setLang('id')">🇮🇩</button>
+<button class="main" onclick="setLang('en')">🇬🇧</button>
+<button class="main" onclick="connectWallet()"><img src="wallet-icon.png"></button>
+<button class="main" onclick="location.href='https://t.me/hahainucoin'"><img src="telegram-icon.png"></button>
+<button class="main" onclick="window.open('https://twitter.com/hahainu')"><img src="twitter-icon.png"></button>
 </div>
 </nav>
 
@@ -127,18 +93,18 @@ iframe{height:250px}
 <img src="hahainudark.png">
 <h1>HAHAINU</h1>
 <h2>💲HAH</h2>
-<h3>(COMINGSOON🎉)<h3>
-<p>Laugh First, Moon Later 🚀</p>
-<button class="main" onclick="toggleMusic()">🎵 Play / Pause</button>
-<button class="main" onclick="prevSong()">⏮ Prev</button>
-<button class="main" onclick="nextSong()">⏭ Next</button>
+<h3 id="coming">COMING SOON 🎉</h3>
+<p id="tagline">Laugh First, Moon Later 🚀</p>
+<button class="main" onclick="toggleMusic()">🎵</button>
+<button class="main" onclick="prevSong()">⏮</button>
+<button class="main" onclick="nextSong()">⏭</button>
 <button class="main" onclick="buy()">Buy Token</button>
 </header>
 
 <section id="about">
 <div class="card">
 <h2>About</h2>
-<p>HAHAINU is a coin crypto project driven by community and laughter. No fake promise, only meme and moon.</p>
+<p id="aboutText"></p>
 </div>
 </section>
 
@@ -157,108 +123,130 @@ iframe{height:250px}
 <section>
 <div class="card">
 <h2>Contract Address</h2>
-<input id="ca" value="PASTE_YOUR_CONTRACT_ADDRESS">
-<button class="main" onclick="copyCA()">Copy Contract</button>
+<input id="ca" value="PASTE_CONTRACT_SOLANA">
+<button class="main" onclick="copyCA()">Copy</button>
 </div>
 </section>
 
 <section id="buy">
 <div class="card">
 <h2>Live Chart</h2>
-<iframe src="https://dexscreener.com"></iframe>
+<iframe src="https://dexscreener.com/solana/PASTE_CONTRACT_SOLANA?embed=1&theme=dark"></iframe>
 </div>
 </section>
 
 <section>
 <div class="card">
-<h2>How To Buy</h2>
-<ol>
-<li>Install wallet</li>
-<li>Connect wallet</li>
-<li>Swap token</li>
-<li>Hold & Meme</li>
-</ol>
+<h2 id="wpTitle">Whitepaper</h2>
+<p id="wpShort"></p>
+<p id="wpFull" style="display:none"></p>
+<button class="main" onclick="toggleWP()" id="wpBtn">Read More</button>
 </div>
 </section>
 
-<footer>
-creat by Ahmad Sholhan © 2026 — Hahainu Coin Project
-</footer>
+<section>
+<div class="card">
+<h2>Roadmap</h2>
+<div class="roadmap">
+<div class="road">🚀 Phase 1<br>Launch Token<br>Website<br>Community</div>
+<div class="road">📊 Phase 2<br>Raydium LP<br>Dexscreener<br>Marketing</div>
+<div class="road">🎨 Phase 3<br>NFT Meme<br>Staking<br>Partnership</div>
+<div class="road">🌕 Phase 4<br>CEX Listing<br>Global Community</div>
+</div>
+</div>
+</section>
+
+<section id="community">
+<div class="card">
+<h2 id="communityTitle">Community</h2>
+<p id="communityText"></p>
+<div style="margin-top:15px">
+<button class="main" onclick="location.href='https://t.me/hahainucoin'"><img src="telegram-icon.png"></button>
+<button class="main" onclick="window.open('https://twitter.com/hahainu')"><img src="twitter-icon.png"></button>
+</div>
+</div>
+</section>
+
+<footer>© 2026 HAHAINU</footer>
 
 <script>
 window.onload=()=>{document.getElementById("loader").style.display="none"}
 
-// ====== MUSIC PLAYER MULTI-LAGU ======
-const playlist = [
-  "sound1.mp3",
-  "sound2.mp3",
-  "sound3.mp3",
-  "sound4.mp3",
-  "sound5.mp3"
-];
-let currentTrack = Math.floor(Math.random() * playlist.length);
-const music = document.getElementById("music");
-
-function loadTrack(index){
-  music.src = playlist[index];
-  music.play().catch(()=>{}); // autoplay ignore block
+const text={
+id:{
+coming:"SEGERA RILIS 🎉",
+tagline:"Tertawa dulu, ke bulan kemudian 🚀",
+about:"HAHAINU adalah meme coin Solana berbasis komunitas dan hiburan.",
+wpShort:"HAHAINU adalah meme coin Solana dengan fokus komunitas.",
+wpFull:"HAHAINU dibangun di jaringan Solana dengan biaya murah dan cepat. Tidak ada pajak, tidak ada mint ulang. 80% likuiditas, 10% dev, 5% marketing, 5% komunitas.",
+community:"Gabung komunitas HAHAINU di Telegram & Twitter.",
+more:"Selengkapnya",
+less:"Tutup"
+},
+en:{
+coming:"COMING SOON 🎉",
+tagline:"Laugh First, Moon Later 🚀",
+about:"HAHAINU is a Solana meme coin driven by community and fun.",
+wpShort:"HAHAINU is a Solana-based meme coin focused on community.",
+wpFull:"HAHAINU is built on Solana for fast and cheap fees. No tax, no mint. 80% liquidity, 10% dev, 5% marketing, 5% community.",
+community:"Join HAHAINU community on Telegram & Twitter.",
+more:"Read More",
+less:"Close"
+}
 }
 
-function toggleMusic(){
-  if(music.paused){
-    loadTrack(currentTrack);
-  } else {
-    music.pause();
-  }
+let lang="id";
+function setLang(l){
+lang=l;
+coming.innerText=text[l].coming;
+tagline.innerText=text[l].tagline;
+aboutText.innerText=text[l].about;
+wpShort.innerText=text[l].wpShort;
+wpFull.innerText=text[l].wpFull;
+communityText.innerText=text[l].community;
+wpBtn.innerText=text[l].more;
+}
+setLang("id");
+
+function toggleWP(){
+if(wpFull.style.display=="none"){wpFull.style.display="block";wpBtn.innerText=text[lang].less}
+else{wpFull.style.display="none";wpBtn.innerText=text[lang].more}
 }
 
-music.onended = nextSong;
+// MUSIC
+const playlist=["sound1.mp3","sound2.mp3","sound3.mp3"];
+let track=Math.floor(Math.random()*playlist.length);
+const music=document.getElementById("music");
+function loadTrack(i){music.src=playlist[i];music.play().catch(()=>{})}
+function toggleMusic(){music.paused?loadTrack(track):music.pause()}
+music.onended=()=>{track=Math.floor(Math.random()*playlist.length);loadTrack(track)}
+function nextSong(){music.onended()}
+function prevSong(){track=(track-1+playlist.length)%playlist.length;loadTrack(track)}
 
-function nextSong(){
-  currentTrack = Math.floor(Math.random() * playlist.length);
-  loadTrack(currentTrack);
-}
-
-function prevSong(){
-  currentTrack--;
-  if(currentTrack < 0) currentTrack = playlist.length - 1;
-  loadTrack(currentTrack);
-}
-
-// ====== BUY TOKEN ======
+// BUY
 function buy(){
 window.open("https://raydium.io/swap/?inputCurrency=sol&outputCurrency=PASTE_CONTRACT_SOLANA");
 }
 
-// ====== COPY CONTRACT ======
-function copyCA(){
-let ca=document.getElementById("ca");
-ca.select();
-document.execCommand("copy");
-alert("Contract copied!");
-}
+// COPY
+function copyCA(){ca.select();document.execCommand("copy");alert("Copied!")}
 
-// ====== CONNECT WALLET (PHANTOM SOLANA) ======
+// WALLET
 async function connectWallet(){
-  if (window.solana && window.solana.isPhantom) {
-    const resp = await window.solana.connect();
-    alert("Connected: " + resp.publicKey.toString());
-  } else {
-    alert("Please install Phantom Wallet");
-    window.open("https://phantom.app/");
-  }
+if(window.solana&&window.solana.isPhantom){
+let r=await window.solana.connect();
+alert("Connected: "+r.publicKey.toString());
+}else{window.open("https://phantom.app")}
 }
 
-// ====== SCROLL ANIMATION ======
+// SCROLL
 const cards=document.querySelectorAll(".card");
 window.addEventListener("scroll",()=>{
 cards.forEach(c=>{
-if(c.getBoundingClientRect().top<window.innerHeight-100){
-c.classList.add("show");
-}
+if(c.getBoundingClientRect().top<innerHeight-100){c.classList.add("show")}
 });
 });
 </script>
 
 </body>
-</html>
+    </html>
